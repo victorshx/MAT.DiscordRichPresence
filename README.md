@@ -57,6 +57,8 @@ Reversing game structure by ([@buxkaizhe](https://github.com/buxkaizhe)), big th
 
 Providing SDK for game structure, couldn't do it without this guy ([@astron51](https://github.com/astron51)).
 
+Open-source memory library by ([@ayuthmang](https://github.com/ayuthmang/MemoryX))
+
 ## License
 
 `MAT.DiscordRichPresence` is available under the GPL 3.0 license. See the [LICENSE](LICENSE) file for more info.
