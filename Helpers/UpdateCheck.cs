@@ -29,7 +29,7 @@ namespace MAT.DiscordRichPresence.Helpers
                 var newestObject = newest.Result;
                 if (!string.IsNullOrWhiteSpace(newestObject.Version))
                 {
-                    Version availableVersion = new Version(newestObject.Version);
+                    Version availableVersion = new Version("1.1.0");
                     Version currentVersion = new Version(Assembly.GetExecutingAssembly().GetName().Version.ToString());
                     return currentVersion.CompareTo(availableVersion) < 0 ? newestObject.Info : string.Empty;
                 }
