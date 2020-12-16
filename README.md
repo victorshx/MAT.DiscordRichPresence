@@ -1,8 +1,10 @@
-# MAT.DiscordRichPresence
-
 [![License](https://img.shields.io/github/license/victorshx/MAT.DiscordRichPresence.svg?label=License&maxAge=86400)](./LICENSE)
 [![GitHub Release](https://img.shields.io/github/release/victorshx/MAT.DiscordRichPresence.svg?label=Latest&maxAge=60)](https://github.com/victorshx/MAT.DiscordRichPresence/releases/latest)
 [![Github Downloads](https://img.shields.io/github/downloads/victorshx/MAT.DiscordRichPresence/latest/total.svg?label=Downloads%20for%20latest&maxAge=60)](https://github.com/victorshx/MAT.DiscordRichPresence/releases/latest)
+<a href="https://github.com/andreasbm/readme/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/andreasbm/readme.svg" height="20"/></a>
+<a href="https://github.com/andreasbm/readme/graphs/commit-activity"><img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" height="20"/></a>
+
+# MAT.DiscordRichPresence
 
 <p align="center">
   <h2 align="center"><a href="https://github.com/victorshx/MAT.DiscordRichPresence/releases">DOWNLOAD HERE</a></h2>
@@ -17,6 +19,7 @@ MAT.DiscordRichPresence currently supports:
 - Channel Name
 - Room Number
 - Number of players in a room
+- Player State **(Waiting/Playing)**
 - Room Mode Name **(coming soon)**
 - Room Map Name **(coming soon)**
 
@@ -24,13 +27,13 @@ Preview of the rich presence:
 
 ![Preview](https://i.imgur.com/v7DDIB8.jpeg)
 
-![Preview](https://i.imgur.com/RaxxiwP.jpeg)
+![Preview](https://i.imgur.com/uz2ftx4.jpeg)
 
 ## Basic Usage  
 
 This program is written to focus on simplicity. No configuration is required, just run and forget. However, Discord needs to be running for it to connect to Discord's Game Activity. 
 
-If you are not seeing your presence, please enable **Display currently running game as a status message** under **Game Activity** at Discord settings. [Screenshot](https://i.imgur.com/LlUoFAc.jpg) of the settings.
+If you are not seeing your presence, please enable **Display currently running game as a status message** under **Game Activity** at Discord settings or restart your Discord client. Make sure your Discord setting is correct, see [screenshot](https://i.imgur.com/LlUoFAc.jpg).
 
 Preview of the program: 
 
@@ -49,15 +52,23 @@ Preview of the program:
 
 If you have big brains, you can compile the program yourself.
 
+## Third-party Libraries
+
+- [MemoryX](https://github.com/ayuthmang/MemoryX)
+- [DiscordRichPresence](https://github.com/Lachee/discord-rpc-csharp)
+- [Enums.NET](https://github.com/TylerBrinkley/Enums.NET)
+- [Colorful.Console](https://github.com/tomakita/Colorful.Console)
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+- [Flurl](https://github.com/tmenier/Flurl)
+
+
 ## Credits
 
-Created and maintained by victorshx ([@victorshx](https://github.com/victorshx)).
+Created and maintained by [@victorshx](https://github.com/victorshx).
 
-Reversing game structure by ([@buxkaizhe](https://github.com/buxkaizhe)), big thanks.
+Reversing game structure by [@buxkaizhe](https://github.com/buxkaizhe), big thanks.
 
-Providing SDK for game structure, couldn't do it without this guy ([@astron51](https://github.com/astron51)).
-
-Open-source memory library by ([@ayuthmang](https://github.com/ayuthmang/MemoryX))
+Providing SDK for game structure, couldn't do it without this guy [@astron51](https://github.com/astron51).
 
 ## License
 
