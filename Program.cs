@@ -122,10 +122,8 @@ namespace MAT.DiscordRichPresence
                 if (!Proc.IsAlive(Var.pId))
                 {
                     //When user has closed the game, cleanup everything
-                    Discord.ReadyState = false;
-
-                    //Dispose DiscordRpc client
                     Discord.Cleanup();
+                    Discord.ReadyState = false;
 
                     Thread.Sleep(2000);
 
