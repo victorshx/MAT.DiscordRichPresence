@@ -12,9 +12,12 @@ namespace MAT.DiscordRichPresence.Core.Services
 {
     class Discord
     {
-        //DiscordRpc constants
+        //DiscordRpc client
         private static DiscordRpcClient _client;
+
+        //DiscordRpc constants
         private static readonly DateTime _startElapsedTime = DateTime.UtcNow;
+        public static bool ReadyState { get; set; } = false;
 
         public static void Init()
         {
@@ -22,10 +25,10 @@ namespace MAT.DiscordRichPresence.Core.Services
             _client = new DiscordRpcClient(Const.DISCORD_APP_ID);
 
             //Set the logger
-            _client.Logger = new ConsoleLogger() 
-            { 
-                Level = LogLevel.Warning, 
-                Colored = true 
+            _client.Logger = new ConsoleLogger()
+            {
+                Level = LogLevel.Warning,
+                Colored = true
             };
 
             //Subscribe to ready event
@@ -52,16 +55,16 @@ namespace MAT.DiscordRichPresence.Core.Services
                 ReadyState = false;
             };
 
+            //Successful connection to Discord pipe
             _client.OnConnectionEstablished += (sender, e) =>
             {
                 Console.WriteLine($"Connection to Discord established", Color.LimeGreen);
                 Console.Write(Environment.NewLine);
             };
 
+            //Failed to connect to Discord pipe(when Discord is not available or Discord has closed)
             _client.OnConnectionFailed += (sender, e) =>
             {
-                ReadyState = false;
-
                 Console.WriteLine($"Connection to Discord failed. Please restart or open Discord.", Color.Pink);
                 Console.Write(Environment.NewLine);
                 ReadyState = false;
@@ -69,9 +72,7 @@ namespace MAT.DiscordRichPresence.Core.Services
 
             _client.OnPresenceUpdate += (sender, e) =>
             {
-#if DEBUG
-                Console.WriteLine("Discord Received Update!", Color.Gold);
-#endif
+                //Console.WriteLine("Discord Received Update!", Color.Gold);
             };
 
             //Connect to Rpc
@@ -87,23 +88,27 @@ namespace MAT.DiscordRichPresence.Core.Services
                 string rN = ((Struct.Realm)Var.g1).AsString(EnumFormat.Description),
                     cN = ((Struct.Channel)Var.g2).AsString(EnumFormat.Description);
 
-                string gMo = ((Struct.GameMap)Var.g6).AsString(EnumFormat.Description),
-                    gMa = ((Struct.GameMode)Var.g5).AsString(EnumFormat.Description);
+                string gMo = ((Struct.GameMap)Var.g7).AsString(EnumFormat.Description),
+                    gMa = ((Struct.GameMode)Var.g6).AsString(EnumFormat.Description);
+
+                string s1 = Var.g4 ? "Playing" : "Waiting";
+                string s2 = Var.g3 ? $"{s1} | {Var.g5.ToString().PadLeft(3, '0')}" : "Lobby";
 
                 _client.SetPresence(new RichPresence()
                 {
                     Details = bS ? rN : $"{rN} ({cN})",
-                    State = Var.g3 ? $"Room {Var.g4.ToString().PadLeft(3, '0')}" : "Lobby",
+                    State = s2,
                     Assets = new Assets()
                     {
                         LargeImageKey = Const.DISCORD_LARGE_IMAGE_KEY,
-                        LargeImageText = Var.g5 != 0 && Var.g6 != 0 ? $"Mode {gMo} Map {gMa}" : Const.GAME_FULL_NAME
+                        //LargeImageText = Var.g6 != 0 && Var.g7 != 0 ? $"Mode {gMo} Map {gMa}" : Const.GAME_FULL_NAME
+                        LargeImageText = Const.GAME_FULL_NAME
                     },
                     Party = new Party()
                     {
                         ID = Var.g3 ? "room" : "",
-                        Size = Convert.ToInt32(Var.g7),
-                        Max = Var.g8,
+                        Size = Convert.ToInt32(Var.g8),
+                        Max = Var.g9,
                     },
                     Timestamps = new Timestamps()
                     {
@@ -133,7 +138,5 @@ namespace MAT.DiscordRichPresence.Core.Services
         {
             if (ReadyState) _client.Dispose();
         }
-
-        public static bool ReadyState { get; set; } = false;
     }
 }

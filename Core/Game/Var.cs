@@ -6,12 +6,13 @@
         public static int g2;
 
         public static bool g3 = false;
+        public static bool g4 = false;
 
-        public static byte g4;
-        public static int g5;
+        public static byte g5;
         public static int g6;
-        public static byte g7;
-        public static int g8;
+        public static int g7;
+        public static byte g8;
+        public static int g9;
 
         //Temp variables
         public static int pId;
