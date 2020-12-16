@@ -37,7 +37,7 @@ Preview of the program:
 ![Preview](https://i.imgur.com/WXJrU3j.jpeg)
 
 ## Requirements
-- [.NET Framework 4.5.2](https://download.microsoft.com/download/9/A/7/9A78F13F-FD62-4F6D-AB6B-1803508A9F56/51209.34209.03/web/NDP452-KB2901954-Web.exe) (Please install it before running this program)
+- [.NET Framework 4.5.2](https://download.microsoft.com/download/9/A/7/9A78F13F-FD62-4F6D-AB6B-1803508A9F56/51209.34209.03/web/NDP452-KB2901954-Web.exe) (For Windows 7 users)
 - Windows 10 (Windows 7, Windows 8 may work but is no longer tested, please upgrade)
 
 ## Branches ##
