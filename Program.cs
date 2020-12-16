@@ -58,7 +58,7 @@ namespace MAT.DiscordRichPresence
             else
             {
                 Console.WriteLine($"Update available. Information: {updateInfo}", Color.Orange);
-                Thread.Sleep(3500);
+                Thread.Sleep(3000);
                 Process.Start(Const.REPO_RELEASE_URL);
                 Console.ReadKey();
             }
