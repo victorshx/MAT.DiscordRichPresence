@@ -18,9 +18,9 @@ namespace MAT.DiscordRichPresence
     class Program
     {
         //Thread
-        private static readonly Thread _thGameWatcher = new Thread(GameWatcher);
-        private static readonly Thread _thGameRoutine = new Thread(GameRoutine);
-        private static readonly Thread _thDebugLog = new Thread(DebugLog);
+        private static Thread _thGameWatcher;
+        private static Thread _thGameRoutine;
+        private static Thread _thDebugLog;
 
         static void Main(string[] args)
         {
@@ -76,7 +76,7 @@ namespace MAT.DiscordRichPresence
                     if (!isPrintedIntro)
                     {
                         About.PrintIntro();
-                        isPrintedIntro = !isPrintedIntro;
+                        isPrintedIntro = true;
                     }
                 }
                 else if (p.Length == 1)
@@ -90,15 +90,19 @@ namespace MAT.DiscordRichPresence
                     //Assign game pid
                     Var.pId = p[0].Id;
 
-                    //Start thread to read game structure continously
+                    //Initialize thread to read game structure continously
+                    _thGameRoutine = new Thread(GameRoutine);
                     _thGameRoutine.Start();
 
-                    //Start thread to watch if game is exit
+                    //Initialize thread to watch if game is exit
+                    _thGameWatcher = new Thread(GameWatcher);
                     _thGameWatcher.Start();
 
 #if DEBUG
+                    _thDebugLog = new Thread(DebugLog);
                     _thDebugLog.Start();
 #endif
+
                     return;
                 }
                 else //Found more than one game process, unable to get valid game stats because of two game running
@@ -123,7 +127,11 @@ namespace MAT.DiscordRichPresence
                     //Dispose DiscordRpc client
                     Discord.Cleanup();
 
-                    About.PrintGoodbye();
+                    Thread.Sleep(2000);
+
+                    FindGame();
+
+                    //If process is not alive anymore, return statement to end thread
                     return;
                 }
 
@@ -136,12 +144,15 @@ namespace MAT.DiscordRichPresence
             Console.WriteLine("Initializing game routine...", Color.Orange);
 
             Memory memory = new Memory();
-            if (memory.GetProcessHandle(Const.GAME_PROCESS))
+            if (memory.GetProcessHandle(Var.pId))
             {
                 Console.WriteLine("Game routine is initialized successfully", Color.LimeGreen);
 
                 while (true)
                 {
+                    //End game routine thread if process is not alive
+                    if (!Proc.IsAlive(Var.pId)) return;
+
                     Var.g1 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off1);
                     Var.g2 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off2);
 
