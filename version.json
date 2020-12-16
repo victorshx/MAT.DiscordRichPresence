@@ -1,4 +1,4 @@
 {
-  "Version": "1.1.0",
-  "Info": "Added player state (Waiting/Playing). Updated presence styling for Room."
+  "Version": "1.1.1",
+  "Info": "MAT.DiscordRichPresence can run 24/7 now! When you exit MAT, it will wait for you to restart game."
 }
