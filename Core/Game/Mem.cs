@@ -11,5 +11,6 @@
         public static readonly int[] off6 = new int[] { 0x6F4 };
         public static readonly int[] off7 = new int[] { 0x6D4, 0x28 };
         public static readonly int[] off8 = new int[] { 0x6D4, 0x4C };
+        public static readonly int[] off9 = new int[] { 0x1994 };
     }
 }

@@ -24,8 +24,8 @@ namespace MAT.DiscordRichPresence
 
         static void Main(string[] args)
         {
-            Console.CursorVisible = false;
             Console.Title = "MAT2 Discord Rich Presence Client by victorshx";
+            Console.CursorVisible = false;
             ConsoleWindow.DisableQuickEdit();
 
             // Listen to close window event, CTRL-C, kill, etc
@@ -97,7 +97,7 @@ namespace MAT.DiscordRichPresence
                     _thGameWatcher.Start();
 
 #if DEBUG
-                    thDebugLog.Start();
+                    _thDebugLog.Start();
 #endif
                     return;
                 }
@@ -148,11 +148,13 @@ namespace MAT.DiscordRichPresence
                     Var.g3 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off8) == 1 ? true : false;
                     if (Var.g3)
                     {
-                        Var.g4 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off3);
-                        Var.g5 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off4);
-                        Var.g6 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off5);
-                        Var.g7 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off6);
-                        Var.g8 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off7);
+                        Var.g4 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off9) != 73143 ? true : false;
+
+                        Var.g5 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off3);
+                        Var.g6 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off4);
+                        Var.g7 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off5);
+                        Var.g8 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off6);
+                        Var.g9 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off7);
                     }
 
                     Thread.Sleep(100);
@@ -179,10 +181,11 @@ namespace MAT.DiscordRichPresence
                     if (Var.g3)
                     {
                         sb.Append(Environment.NewLine);
-                        sb.AppendLine($"ID: {Var.g4.ToString().PadLeft(3, '0')}");
-                        sb.AppendLine($"Mo ID: {Var.g5}");
-                        sb.AppendLine($"Ma ID: {Var.g6}");
-                        sb.AppendLine($"P: {Var.g7}/{Var.g8}");
+                        sb.AppendLine($"ID: {Var.g5.ToString().PadLeft(3, '0')}");
+                        sb.AppendLine($"Mo ID: {Var.g6}");
+                        sb.AppendLine($"Ma ID: {Var.g7}");
+                        sb.AppendLine($"P: {Var.g8} {Var.g9}");
+                        sb.AppendLine($"S: {(Var.g4 ? "P" : "W")}");
                     }
 
                     Console.Clear();
