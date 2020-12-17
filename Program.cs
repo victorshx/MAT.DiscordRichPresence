@@ -197,6 +197,8 @@ namespace MAT.DiscordRichPresence
                         sb.AppendLine($"P: {Var.g8} {Var.g9}");
                         sb.AppendLine($"S: {(Var.g4 ? "P" : "W")}");
                     }
+
+                    sb.Append(Environment.NewLine);
                     Console.Write(sb);
                 }
 

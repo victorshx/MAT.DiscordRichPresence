@@ -25,11 +25,20 @@ namespace MAT.DiscordRichPresence.Core.Services
             _client = new DiscordRpcClient(Const.DISCORD_APP_ID);
 
             //Set the logger
+#if DEBUG
+            _client.Logger = new ConsoleLogger()
+            {
+                Level = LogLevel.Info,
+                Colored = true
+            };
+#else
             _client.Logger = new ConsoleLogger()
             {
                 Level = LogLevel.Warning,
                 Colored = true
             };
+#endif
+
 
             //Subscribe to ready event
             _client.OnReady += (sender, e) =>
