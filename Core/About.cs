@@ -43,25 +43,6 @@ namespace MAT.DiscordRichPresence.Core
             Console.Write(Environment.NewLine);
         }
 
-        public static void PrintGoodbye()
-        {
-            Console.Clear();
-            Console.WriteLine(@"
-
-   ____                 _ _                
-  / ___| ___   ___   __| | |__  _   _  ___ 
- | |  _ / _ \ / _ \ / _` | '_ \| | | |/ _ \
- | |_| | (_) | (_) | (_| | |_) | |_| |  __/
-  \____|\___/ \___/ \__,_|_.__/ \__, |\___|
-                                |___/      
-
-", Color.DeepPink);
-
-            Console.WriteLine("Your game has closed, exiting in 5 seconds.", Color.Red);
-            Thread.Sleep(5000);
-            Environment.Exit(0);
-        }
-
         public static void PrintSorry()
         {
             Console.Clear();
