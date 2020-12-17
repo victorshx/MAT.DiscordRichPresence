@@ -123,7 +123,7 @@ namespace MAT.DiscordRichPresence
                 {
                     //When user has closed the game, cleanup everything
                     Discord.Cleanup();
-                    Discord.ReadyState = false;
+                    Discord.isReady = false;
 
                     Thread.Sleep(2000);
 
@@ -179,10 +179,11 @@ namespace MAT.DiscordRichPresence
         {
             while (true)
             {
-                if (Proc.IsAlive(Var.pId) && Var.g1 != 0)
+                if (Discord.isReady && Proc.IsAlive(Var.pId) && Var.g1 != 0)
                 {
-                    Console.SetCursorPosition(0, 0);
                     StringBuilder sb = new StringBuilder();
+                    sb.Append(Environment.NewLine);
+                    sb.AppendLine($"Discord Ready: {Discord.isReady}");
                     sb.Append(Environment.NewLine);
                     sb.AppendLine($"R ID: {((Struct.Realm)Var.g1).AsString(EnumFormat.Description)}");
                     sb.AppendLine($"C ID: {((Struct.Channel)Var.g2).AsString(EnumFormat.Description)}");
@@ -196,12 +197,10 @@ namespace MAT.DiscordRichPresence
                         sb.AppendLine($"P: {Var.g8} {Var.g9}");
                         sb.AppendLine($"S: {(Var.g4 ? "P" : "W")}");
                     }
-
-                    Console.Clear();
                     Console.Write(sb);
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
             }
         }
 
