@@ -209,7 +209,25 @@ namespace MAT.DiscordRichPresence.Core.Game
             PandaPark = 293,
 
             [Description("Sasha's Forbidden Ground")]
-            SashaGround = 324,
+            SashaGround = 288,
+
+            [Description("Farm House")]
+            FarmHouse = 287,
+
+            [Description("Dragon Boat Falls")]
+            DragonBoat = 284,
+
+            [Description("Mini World")]
+            MiniWorld = 277,
+
+            [Description("Bell Factory")]
+            BellFactory = 272,
+
+            [Description("Suez Altar")]
+            SuezAltar = 269,
+
+            [Description("Toy Dream Factory")]
+            ToyFactory = 268,
         }
 
         public enum GameWeaponLimit
