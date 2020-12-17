@@ -172,8 +172,44 @@ namespace MAT.DiscordRichPresence.Core.Game
 
         public enum GameMap
         {
+            /// <summary>
+            /// PVP Team
+            /// </summary>
             [Description("Rainbow Island")]
             RainbowIsland = 436,
+
+            [Description("Cool Summer's Beach")]
+            CoolSummerBeach = 393,
+
+            [Description("Worry Free Castle")]
+            WorryFreeCastle = 421,
+
+            [Description("The Joker Laboratory")]
+            JokerLab = 409,
+
+            [Description("Tranzor's Legacy")]
+            TranzorLegacy = 408,
+
+            [Description("Lego Town")]
+            LegoTown = 324,
+
+            [Description("Titan's Office")]
+            TitanOffice = 322,
+
+            [Description("South Heaven Gate")]
+            SouthHeavenGate = 310,
+
+            [Description("Jiangnan Town")]
+            JiangnanTown = 300,
+
+            [Description("Liberation Square")]
+            LiberSquare = 296,
+
+            [Description("Panda Park")]
+            PandaPark = 293,
+
+            [Description("Sasha's Forbidden Ground")]
+            SashaGround = 324,
         }
 
         public enum GameWeaponLimit
