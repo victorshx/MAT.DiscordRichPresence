@@ -161,10 +161,73 @@ namespace MAT.DiscordRichPresence.Core.Game
             SCLHard = 95,
 
             [Description("Normal")]
+            Inf1Normal = 48,
+
+            [Description("Normal")]
+            Inf1Hard = 49,
+
+            [Description("?")]
+            Inf2 = 55,
+
+            [Description("Normal")]
             Inf3Normal = 69,
 
             [Description("Hard")]
             Inf3Hard = 70,
+
+            [Description("Normal")]
+            SKNormal = 40,
+
+            [Description("Hard")]
+            SKHard = 41,
+
+            [Description("Normal")]
+            DKNormal = 35,
+
+            [Description("Hard")]
+            DKHard = 36,
+
+            [Description("Hell")]
+            DKValley = 38,
+
+            [Description("Easy")]
+            GMissionEasy = 17,
+
+            [Description("Normal")]
+            GMissionNormal = 11,
+
+            [Description("Crazy")]
+            GMissionCrazy = 14,
+
+            [Description("Nightmare")]
+            GMissionNightmare = 15,
+
+            [Description("Easy")]
+            LDefendEasy = 23,
+
+            [Description("Normal")]
+            LDefendNormal = 20,
+
+            [Description("Crazy")]
+            LDefendCrazy = 21,
+
+            [Description("Nightmare")]
+            LDefendNightmare = 21,
+
+            [Description("Easy")]
+            DoomsEasy = 29,
+
+            [Description("Normal")]
+            DoomsNormal = 26,
+
+            [Description("Nightmare")]
+            DoomsNightmare = 27,
+
+            [Description("Crazy")]
+            DoomsCrazy = 28,
+
+            [Description("Normal")] 
+            Galatic = 8,
         }
 
         public enum GameMap
