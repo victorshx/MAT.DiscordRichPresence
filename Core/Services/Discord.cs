@@ -16,7 +16,7 @@ namespace MAT.DiscordRichPresence.Core.Services
         private static DiscordRpcClient _client;
 
         //DiscordRpc constants
-        private static readonly DateTime _startElapsedTime = DateTime.UtcNow;
+        private static Timestamps Timestamps;
         public static bool isReady { get; set; } = false;
 
         public static void Init()
@@ -39,12 +39,13 @@ namespace MAT.DiscordRichPresence.Core.Services
             };
 #endif
 
-
             //Subscribe to ready event
             _client.OnReady += (sender, e) =>
             {
                 Console.Write(Environment.NewLine);
                 Console.WriteLine($"Discord User ({e.User.Username}#{e.User.Discriminator}) is ready to receive presence update", Color.LimeGreen);
+
+                Timestamps = new Timestamps() { Start = DateTime.UtcNow };
                 isReady = true;
             };
 
@@ -116,10 +117,7 @@ namespace MAT.DiscordRichPresence.Core.Services
                         Size = Convert.ToInt32(Var.g8),
                         Max = Var.g9
                     },
-                    Timestamps = new Timestamps()
-                    {
-                        Start = _startElapsedTime,
-                    }
+                    Timestamps = Timestamps
                 });
             }
             else
@@ -131,10 +129,7 @@ namespace MAT.DiscordRichPresence.Core.Services
                         LargeImageKey = Const.DISCORD_LARGE_IMAGE_KEY,
                         LargeImageText = Const.GAME_FULL_NAME
                     },
-                    Timestamps = new Timestamps()
-                    {
-                        Start = _startElapsedTime,
-                    }
+                    Timestamps = Timestamps
                 });
             }
         }

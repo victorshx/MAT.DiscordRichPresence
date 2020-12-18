@@ -121,16 +121,15 @@ namespace MAT.DiscordRichPresence
             {
                 if (!Proc.IsAlive(Var.pId))
                 {
-                    //When user has closed the game, cleanup everything
+                    Console.WriteLine("Disconnecting from Discord...", Color.Orange);
+
+                    //When user has closed the game, dispose DiscordRpc
                     Discord.Cleanup();
                     Discord.isReady = false;
 
-                    Thread.Sleep(2000);
+                    Thread.Sleep(500);
 
                     FindGame();
-
-                    //If process is not alive anymore, return statement to end thread
-                    return;
                 }
 
                 Thread.Sleep(1000);
@@ -148,7 +147,7 @@ namespace MAT.DiscordRichPresence
 
                 while (true)
                 {
-                    //End game routine thread if process is not alive
+                    //End game routine loop if process is not alive
                     if (!Proc.IsAlive(Var.pId)) return;
 
                     Var.g1 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off1);
