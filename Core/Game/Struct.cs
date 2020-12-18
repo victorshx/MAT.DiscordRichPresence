@@ -165,9 +165,6 @@ namespace MAT.DiscordRichPresence.Core.Game
 
             [Description("Hard")]
             Inf3Hard = 70,
-            /// <summary>
-            /// Chat Room
-            /// </summary>
         }
 
         public enum GameMap

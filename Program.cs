@@ -154,15 +154,17 @@ namespace MAT.DiscordRichPresence
                     Var.g2 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off2);
 
                     Var.g3 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off8) == 1 ? true : false;
+                    Var.g4 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off9) == 76061 ? true : false;
+
                     if (Var.g3)
                     {
-                        Var.g4 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off9) != 73143 ? true : false;
+                        Var.g5 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off9) != 73143 ? true : false;
 
-                        Var.g5 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off3);
-                        Var.g6 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off4);
-                        Var.g7 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off5);
-                        Var.g8 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off6);
-                        Var.g9 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off7);
+                        Var.g6 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off3);
+                        Var.g7 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off4);
+                        Var.g8 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off5);
+                        Var.g9 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off6);
+                        Var.g10 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off7);
                     }
 
                     Thread.Sleep(100);
@@ -190,11 +192,11 @@ namespace MAT.DiscordRichPresence
                     if (Var.g3)
                     {
                         sb.Append(Environment.NewLine);
-                        sb.AppendLine($"ID: {Var.g5.ToString().PadLeft(3, '0')}");
-                        sb.AppendLine($"Mo ID: {Var.g6}");
-                        sb.AppendLine($"Ma ID: {Var.g7}");
-                        sb.AppendLine($"P: {Var.g8} {Var.g9}");
-                        sb.AppendLine($"S: {(Var.g4 ? "P" : "W")}");
+                        sb.AppendLine($"ID: {Var.g6.ToString().PadLeft(3, '0')}");
+                        sb.AppendLine($"Mo ID: {Var.g7}");
+                        sb.AppendLine($"Ma ID: {Var.g8}");
+                        sb.AppendLine($"P: {Var.g9} {Var.g10}");
+                        sb.AppendLine($"S: {(Var.g5 ? "P" : "W")}");
                     }
 
                     sb.Append(Environment.NewLine);

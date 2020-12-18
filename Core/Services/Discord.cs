@@ -96,26 +96,27 @@ namespace MAT.DiscordRichPresence.Core.Services
                 string rN = ((Struct.Realm)Var.g1).AsString(EnumFormat.Description),
                     cN = ((Struct.Channel)Var.g2).AsString(EnumFormat.Description);
 
-                string gMo = ((Struct.GameMap)Var.g7).AsString(EnumFormat.Description),
-                    gMa = ((Struct.GameMode)Var.g6).AsString(EnumFormat.Description);
+                string gMo = ((Struct.GameMap)Var.g8).AsString(EnumFormat.Description),
+                    gMa = ((Struct.GameMode)Var.g7).AsString(EnumFormat.Description);
 
-                string s1 = Var.g4 ? "Playing" : "Waiting";
-                string s2 = Var.g3 ? $"{s1} | {Var.g5.ToString().PadLeft(3, '0')}" : "Lobby";
+                string s1 = Var.g5 ? "Playing" : "Waiting";
+                string s2 = Var.g4 ? "Chat Room" : "Lobby";
+                string s3 = Var.g3 ? $"{s1} | {Var.g6.ToString().PadLeft(3, '0')}" : s2;
 
                 _client.SetPresence(new RichPresence()
                 {
                     Details = bS ? rN : $"{rN} ({cN})",
-                    State = s2,
+                    State = s3,
                     Assets = new Assets()
                     {
                         LargeImageKey = Const.DISCORD_LARGE_IMAGE_KEY,
-                        LargeImageText = Var.g6 != 0 && Var.g7 != 0 ? $"{gMa} ({gMo})" : Const.GAME_FULL_NAME
+                        LargeImageText = Var.g7 != 0 && Var.g8 != 0 ? $"{gMa} ({gMo})" : Const.GAME_FULL_NAME
                     },
                     Party = new Party()
                     {
                         ID = Var.g3 ? "room" : "",
-                        Size = Convert.ToInt32(Var.g8),
-                        Max = Var.g9
+                        Size = Convert.ToInt32(Var.g9),
+                        Max = Var.g10
                     },
                     Timestamps = Timestamps
                 });
