@@ -40,5 +40,20 @@ namespace MAT.DiscordRichPresence.Helpers
             }
             return string.Empty;
         }
+
+        public class PatchHolder
+        {
+            public int Base { get; set; }
+            public string GameVersion { get; set; }
+        }
+
+        public static PatchHolder GetGamePatch()
+        {
+            //Console does not support async-await, have to make it synchronous 
+            var patch = Const.PATCH_FILE_URL.GetJsonAsync<PatchHolder>();
+            patch.Wait();
+
+            return patch.Result;
+        }
     }
 }

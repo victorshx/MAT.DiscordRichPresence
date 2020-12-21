@@ -47,6 +47,10 @@ namespace MAT.DiscordRichPresence
             //Empty string means no update available
             if (string.IsNullOrEmpty(updateInfo))
             {
+                var client = UpdateCheck.GetGamePatch();
+                Console.Title = $"MAT2 Discord Rich Presence Client by victorshx (Patch {client.GameVersion})";
+                Mem.bla = client.Base;
+
                 FindGame();
 
                 //Invoke UpdatePresence function every 5 seconds
