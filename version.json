@@ -1,4 +1,4 @@
 {
-  "Version": "1.1.1",
-  "Info": "MAT.DiscordRichPresence can run 24/7 now! When you exit MAT, it will wait for you to restart game."
+  "Version": "1.2.0",
+  "Info": "Added game patch auto-update, display working game patch version as title, and fixed several bugs."
 }

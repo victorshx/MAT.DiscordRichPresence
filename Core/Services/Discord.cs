@@ -110,7 +110,7 @@ namespace MAT.DiscordRichPresence.Core.Services
                     Assets = new Assets()
                     {
                         LargeImageKey = Const.DISCORD_LARGE_IMAGE_KEY,
-                        LargeImageText = Var.g7 != 0 && Var.g8 != 0 ? $"{gMa} ({gMo})" : Const.GAME_FULL_NAME
+                        LargeImageText = Var.g7 != 0 && Var.g8 != 0 ? $"{gMo}" : Const.GAME_FULL_NAME
                     },
                     Party = new Party()
                     {
