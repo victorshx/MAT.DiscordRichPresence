@@ -10,5 +10,6 @@
         public const string GITHUB_REPO_URL = "https://github.com/victorshx/MAT.DiscordRichPresence";
         public const string REPO_RELEASE_URL = "https://github.com/victorshx/MAT.DiscordRichPresence/releases/latest";
         public const string VERSION_FILE_URL = "https://raw.githubusercontent.com/victorshx/MAT.DiscordRichPresence/master/version.json";
+        public const string PATCH_FILE_URL = "https://raw.githubusercontent.com/victorshx/MAT.DiscordRichPresence/master/patch.json";
     }
 }

@@ -18,9 +18,9 @@ namespace MAT.DiscordRichPresence
     class Program
     {
         //Thread
-        private static readonly Thread _thGameWatcher = new Thread(GameWatcher);
-        private static readonly Thread _thGameRoutine = new Thread(GameRoutine);
-        private static readonly Thread _thDebugLog = new Thread(DebugLog);
+        private static Thread _thGameWatcher;
+        private static Thread _thGameRoutine;
+        private static Thread _thDebugLog;
 
         static void Main(string[] args)
         {
@@ -47,6 +47,10 @@ namespace MAT.DiscordRichPresence
             //Empty string means no update available
             if (string.IsNullOrEmpty(updateInfo))
             {
+                var client = UpdateCheck.GetGamePatch();
+                Console.Title = $"MAT2 Discord Rich Presence Client by victorshx (Patch {client.GameVersion})";
+                Mem.bla = client.Base;
+
                 FindGame();
 
                 //Invoke UpdatePresence function every 5 seconds
@@ -57,7 +61,9 @@ namespace MAT.DiscordRichPresence
             }
             else
             {
-                Console.WriteLine($"Update available. Information: {updateInfo}", Color.Orange);
+                Console.WriteLine($"Update available." + 
+                    Environment.NewLine + 
+                    $"Information: {updateInfo}", Color.Orange);
                 Thread.Sleep(3000);
                 Process.Start(Const.REPO_RELEASE_URL);
                 Console.ReadKey();
@@ -76,7 +82,7 @@ namespace MAT.DiscordRichPresence
                     if (!isPrintedIntro)
                     {
                         About.PrintIntro();
-                        isPrintedIntro = !isPrintedIntro;
+                        isPrintedIntro = true;
                     }
                 }
                 else if (p.Length == 1)
@@ -90,15 +96,19 @@ namespace MAT.DiscordRichPresence
                     //Assign game pid
                     Var.pId = p[0].Id;
 
-                    //Start thread to read game structure continously
+                    //Initialize thread to read game structure continously
+                    _thGameRoutine = new Thread(GameRoutine);
                     _thGameRoutine.Start();
 
-                    //Start thread to watch if game is exit
+                    //Initialize thread to watch if game is exit
+                    _thGameWatcher = new Thread(GameWatcher);
                     _thGameWatcher.Start();
 
 #if DEBUG
+                    _thDebugLog = new Thread(DebugLog);
                     _thDebugLog.Start();
 #endif
+
                     return;
                 }
                 else //Found more than one game process, unable to get valid game stats because of two game running
@@ -117,14 +127,15 @@ namespace MAT.DiscordRichPresence
             {
                 if (!Proc.IsAlive(Var.pId))
                 {
-                    //When user has closed the game, cleanup everything
-                    Discord.ReadyState = false;
+                    Console.WriteLine("Disconnecting from Discord...", Color.Orange);
 
-                    //Dispose DiscordRpc client
+                    //When user has closed the game, dispose DiscordRpc
                     Discord.Cleanup();
+                    Discord.isReady = false;
 
-                    About.PrintGoodbye();
-                    return;
+                    Thread.Sleep(500);
+
+                    FindGame();
                 }
 
                 Thread.Sleep(1000);
@@ -136,25 +147,30 @@ namespace MAT.DiscordRichPresence
             Console.WriteLine("Initializing game routine...", Color.Orange);
 
             Memory memory = new Memory();
-            if (memory.GetProcessHandle(Const.GAME_PROCESS))
+            if (memory.GetProcessHandle(Var.pId))
             {
                 Console.WriteLine("Game routine is initialized successfully", Color.LimeGreen);
 
                 while (true)
                 {
+                    //End game routine loop if process is not alive
+                    if (!Proc.IsAlive(Var.pId)) return;
+
                     Var.g1 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off1);
                     Var.g2 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off2);
 
                     Var.g3 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off8) == 1 ? true : false;
+                    Var.g4 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off9) == 76061 ? true : false;
+
                     if (Var.g3)
                     {
-                        Var.g4 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off9) != 73143 ? true : false;
+                        Var.g5 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off9) != 73143 ? true : false;
 
-                        Var.g5 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off3);
-                        Var.g6 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off4);
-                        Var.g7 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off5);
-                        Var.g8 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off6);
-                        Var.g9 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off7);
+                        Var.g6 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off3);
+                        Var.g7 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off4);
+                        Var.g8 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off5);
+                        Var.g9 = (byte)memory.ReadMemoryPointerInt(Mem.bla, Mem.off6);
+                        Var.g10 = memory.ReadMemoryPointerInt(Mem.bla, Mem.off7);
                     }
 
                     Thread.Sleep(100);
@@ -170,10 +186,11 @@ namespace MAT.DiscordRichPresence
         {
             while (true)
             {
-                if (Proc.IsAlive(Var.pId) && Var.g1 != 0)
+                if (Discord.isReady && Proc.IsAlive(Var.pId) && Var.g1 != 0)
                 {
-                    Console.SetCursorPosition(0, 0);
                     StringBuilder sb = new StringBuilder();
+                    sb.Append(Environment.NewLine);
+                    sb.AppendLine($"Discord Ready: {Discord.isReady}");
                     sb.Append(Environment.NewLine);
                     sb.AppendLine($"R ID: {((Struct.Realm)Var.g1).AsString(EnumFormat.Description)}");
                     sb.AppendLine($"C ID: {((Struct.Channel)Var.g2).AsString(EnumFormat.Description)}");
@@ -181,18 +198,18 @@ namespace MAT.DiscordRichPresence
                     if (Var.g3)
                     {
                         sb.Append(Environment.NewLine);
-                        sb.AppendLine($"ID: {Var.g5.ToString().PadLeft(3, '0')}");
-                        sb.AppendLine($"Mo ID: {Var.g6}");
-                        sb.AppendLine($"Ma ID: {Var.g7}");
-                        sb.AppendLine($"P: {Var.g8} {Var.g9}");
-                        sb.AppendLine($"S: {(Var.g4 ? "P" : "W")}");
+                        sb.AppendLine($"ID: {Var.g6.ToString().PadLeft(3, '0')}");
+                        sb.AppendLine($"Mo ID: {Var.g7}");
+                        sb.AppendLine($"Ma ID: {Var.g8}");
+                        sb.AppendLine($"P: {Var.g9} {Var.g10}");
+                        sb.AppendLine($"S: {(Var.g5 ? "P" : "W")}");
                     }
 
-                    Console.Clear();
+                    sb.Append(Environment.NewLine);
                     Console.Write(sb);
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
             }
         }
 

@@ -1,4 +1,4 @@
 {
-  "Version": "1.1",
-  "Info": "Added player state (Waiting/Playing). Updated presence styling for Room."
+  "Version": "1.2.0",
+  "Info": "Added game patch auto-update, display working game patch version as title, and fixed several bugs."
 }
