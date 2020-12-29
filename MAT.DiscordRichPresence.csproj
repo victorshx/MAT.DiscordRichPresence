@@ -115,6 +115,8 @@
     <None Include="app.manifest" />
     <None Include="ILMerge.props" />
     <None Include="packages.config" />
+    <None Include="patch.json" />
+    <None Include="version.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="discord_creepy.ico" />
