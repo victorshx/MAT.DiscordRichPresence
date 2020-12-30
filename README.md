@@ -1,8 +1,7 @@
 [![License](https://img.shields.io/github/license/victorshx/MAT.DiscordRichPresence.svg?label=License&maxAge=86400)](./LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/ycqjk1kno552vn38/branch/main?svg=true)](https://ci.appveyor.com/project/victorshx/mat-discordrichpresence/branch/main)
+[![Downloads](https://img.shields.io/github/downloads/victorshx/MAT.DiscordRichPresence/total.svg)](https://github.com/victorshx/MAT.DiscordRichPresence/releases)
 [![GitHub Release](https://img.shields.io/github/release/victorshx/MAT.DiscordRichPresence.svg?label=Latest&maxAge=60)](https://github.com/victorshx/MAT.DiscordRichPresence/releases/latest)
-[![Github Downloads](https://img.shields.io/github/downloads/victorshx/MAT.DiscordRichPresence/latest/total.svg?label=Downloads%20for%20latest&maxAge=60)](https://github.com/victorshx/MAT.DiscordRichPresence/releases/latest)
-<a href="https://github.com/andreasbm/readme/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/andreasbm/readme.svg" height="20"/></a>
-<a href="https://github.com/andreasbm/readme/graphs/commit-activity"><img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" height="20"/></a>
 
 # MAT.DiscordRichPresence
 
