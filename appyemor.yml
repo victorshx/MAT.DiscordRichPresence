@@ -1,0 +1,20 @@
+﻿version: BUILD{build}
+
+image: Visual Studio 2019
+shallow_clone: true
+
+configuration:
+- Debug
+- Release
+
+before_build:
+  - nuget restore
+
+build:
+  project: MAT.DiscordRichPresence.sln
+  parallel: true
+  verbosity: minimal
+
+artifacts:
+- path: Bin
+  name: binaries
