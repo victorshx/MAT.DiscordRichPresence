@@ -1,8 +1,12 @@
-﻿version: BUILD{build}
+﻿version: 1.0.{build}
 
 image: Visual Studio 2019
 shallow_clone: true
 
+cache:
+  - packages -> **\packages.config      # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+  - '%USERPROFILE%\.nuget\packages -> **\project.json'  # project.json cache
+  
 configuration:
 - Debug
 - Release
