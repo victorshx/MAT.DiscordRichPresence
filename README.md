@@ -3,11 +3,7 @@
 [![Downloads](https://img.shields.io/github/downloads/victorshx/MAT.DiscordRichPresence/total.svg)](https://github.com/victorshx/MAT.DiscordRichPresence/releases)
 [![GitHub Release](https://img.shields.io/github/release/victorshx/MAT.DiscordRichPresence.svg?label=Latest&maxAge=60)](https://github.com/victorshx/MAT.DiscordRichPresence/releases/latest)
 
-# MAT.DiscordRichPresence
-
-<p align="center">
-  <h2 align="center"><a href="https://github.com/victorshx/MAT.DiscordRichPresence/releases">DOWNLOAD HERE</a></h2>
-</p>
+# THIS PROJECT IS NOT BEING MAINTAINED ANYMORE
 
 MAT.DiscordRichPresence is an application developed to send rich presence update to your Discord for Mission Against Terror 2. Since the game has no intention of adding Discord Rich Presence, I thought we should do it ourselves.
 
